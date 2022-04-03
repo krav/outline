@@ -99,9 +99,9 @@ if (OIDC_CLIENT_ID) {
               subdomain,
             },
             user: {
-              name: profile.name,
+              name: profile.username,
               email: profile.email,
-              avatarUrl: profile.picture,
+              avatarUrl: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
               // Claim name can be overriden using an env variable.
               // Default is 'preferred_username' as per OIDC spec.
               username: get(profile, OIDC_USERNAME_CLAIM),
@@ -111,7 +111,7 @@ if (OIDC_CLIENT_ID) {
               providerId: domain,
             },
             authentication: {
-              providerId: profile.sub,
+              providerId: profile.id,
               accessToken,
               refreshToken,
               scopes,

@@ -205,7 +205,7 @@ allow(User, "delete", Document, (user, document) => {
   if (document.deletedAt) {
     return false;
   }
-  if (user.isViewer) {
+  if (!user.isAdmin) {
     return false;
   }
 
@@ -233,7 +233,7 @@ allow(User, "permanentDelete", Document, (user, document) => {
   if (!document.deletedAt) {
     return false;
   }
-  if (user.isViewer) {
+  if (!user.isAdmin) {
     return false;
   }
 
